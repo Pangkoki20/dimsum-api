@@ -6,11 +6,11 @@ const DevEnv = {
       host: 'smtp.gmail.com',
       port: 465,
       auth:{
-        user: 'realxiz.zixlaer@gmail.com',
-        pass: 'Boy350260356'
+        user: 'aloneemoki@hotmail.com',
+        pass: '0860633707_koki'
       }
     },
-    from: 'realxiz.zixlaer@gmail.com'
+    from: 'aloneemoki@hotmail.com'
   },
   resetPassUrl: ''
 }
@@ -23,7 +23,7 @@ const ProdEnv = {
       port: 465,
       auth: {
         user: 'realxiz.zixlaer@gmail.com',
-        pass: 'Boy350260356'
+        pass: '0860633707_koki'
       }
     },
     from: 'realxiz.zixlaer@gmail.com'
