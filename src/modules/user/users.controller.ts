@@ -13,10 +13,14 @@ import {
   UseInterceptors,
   FileInterceptor,
   UploadedFile,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiUseTags } from '@nestjs/swagger';
 import { AppConfigure } from '../../configures/global.configure';
+import { AuthGuard } from '@nestjs/passport';
+
 var sha512 = require('js-sha512');
 import * as jwt from 'jsonwebtoken';
 
@@ -71,7 +75,7 @@ export class UsersController {
       // if ($body.id) {
       //   $body.id = await parseInt($body.id.toString());
       // }
-      console.log('ข้อมูลที่ถูกสร้าง --------> ',$body);
+      console.log('ข้อมูลที่ถูกสร้าง --------> ', $body);
 
       let users = await Object.assign({}, $body);
 
@@ -139,4 +143,11 @@ export class UsersController {
         .json({ message: 'Email or Password Invalid' });
     }
   }
+
+  @Post('me')
+  getProfile(@Body('token') token, @Res() res) {
+    const result = jwt.decode(token);
+    return res.status(HttpStatus.OK).json(result);
+  }
+  
 }
