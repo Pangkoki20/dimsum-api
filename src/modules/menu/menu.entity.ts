@@ -12,7 +12,7 @@ import {
 import { ApiModelProperty } from '@nestjs/swagger';
 
 @Entity()
-export class Order {
+export class Menu {
   @ApiModelProperty()
   @PrimaryGeneratedColumn()
   id: number;
@@ -31,9 +31,13 @@ export class Order {
 
   @ApiModelProperty()
   @UpdateDateColumn()
-  status: number;
+  namefood: string;
 
   @ApiModelProperty()
   @UpdateDateColumn()
-  user_id: number;
+  price: number;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  order_id: number;
 }

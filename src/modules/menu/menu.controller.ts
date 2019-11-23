@@ -16,7 +16,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { OrderService } from './order.service';
+import { MenuService } from './menu.service';
 import { ApiUseTags } from '@nestjs/swagger';
 import { AppConfigure } from '../../configures/global.configure';
 import { AuthGuard } from '@nestjs/passport';
@@ -28,59 +28,59 @@ import * as jwt from 'jsonwebtoken';
 // import * as path from 'path';
 // import * as _ from 'lodash';
 
-@ApiUseTags('order')
-@Controller('order')
-export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+@ApiUseTags('menu')
+@Controller('menu')
+export class MenuController {
+  constructor(private readonly menuService: MenuService) {}
   @Get()
   async findAll(@Req() $req, @Res() $res) {
     try {
-      let where = await `order.isDisable = false`;
+      let where = await `menu.isDisable = false`;
       let relations = await [];
-      let order = await [];
+      let menu = await [];
 
-      let orderData = await this.orderService.queryBuilder(
+      let menuData = await this.menuService.queryBuilder(
         where,
         // relations,
-        // order,
+        // menu,
       );
 
-      await $res.status(HttpStatus.OK).json(orderData);
+      await $res.status(HttpStatus.OK).json(menuData);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
   }
 
-  @Get('allorder')
-  async findAllorder(@Req() $req, @Res() $res) {
+  @Get('allusers')
+  async findAllusers(@Req() $req, @Res() $res) {
     try {
-      let where = await `order.isDisable = false && order.role = 'order' `;
+      let where = await`menu.isDisable = false && menu.role = 'menu' `;
       let relations = await [];
       let order = await [];
-      let orderData = await this.orderService.queryBuilder(
+      let menuData = await this.menuService.queryBuilder(
         where,
         // relations,
         // order,
       );
 
-      await $res.status(HttpStatus.OK).json(orderData);
+      await $res.status(HttpStatus.OK).json(menuData);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
   }
 
   @Post('create')
-  async createOrder(@Body() $body, @Res() $res) {
+  async createUser(@Body() $body, @Res() $res) {
     try {
       // if ($body.id) {
       //   $body.id = await parseInt($body.id.toString());
       // }
       console.log('ข้อมูลที่ถูกสร้าง --------> ', $body);
 
-      let order = await Object.assign({}, $body);
+      let menu = await Object.assign({}, $body);
 
-      order = await this.orderService.saveOne(order);
-      await $res.status(HttpStatus.OK).json(order);
+      menu = await this.menuService.saveOne(menu);
+      await $res.status(HttpStatus.OK).json(menu);
     } catch ($ex) {
       await $res
         .status(HttpStatus.OK)
