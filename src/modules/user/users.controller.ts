@@ -122,7 +122,7 @@ export class UsersController {
               role: user.role,
               email: user.email,
               phone: user.phone,
-              address: user.address,
+              // address: user.address,
             },
             'shhhhh',
             { expiresIn: '24h' },

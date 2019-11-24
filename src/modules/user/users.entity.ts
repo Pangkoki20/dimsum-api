@@ -37,9 +37,9 @@ export class Users {
   @Column()
   phone: string;
 
-  @ApiModelProperty()
-  @Column()
-  address: string;
+  // @ApiModelProperty()
+  // @Column()
+  // address: string;
 
   @ApiModelProperty()
   @Column({ default: 'user' })

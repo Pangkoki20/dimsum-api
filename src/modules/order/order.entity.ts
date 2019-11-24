@@ -31,9 +31,45 @@ export class Order {
 
   @ApiModelProperty()
   @UpdateDateColumn()
-  status: number;
+  user_id: number;
 
   @ApiModelProperty()
   @UpdateDateColumn()
-  user_id: number;
+  numhouse: number;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  nummoo: number;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  lane: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  tambon: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  amphoe: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  changwat: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  postcode: number;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  payment: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  code: string;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  status: string;
 }
