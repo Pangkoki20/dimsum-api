@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '../../database/database.modules';
-import { MenuProvider } from './menu.provider';
-import { MenuService } from './menu.service';
-import { MenuController } from './menu.controller';
+import { DatabaseModule } from '../database/database.modules';
+import { MenuProvider } from './menu_order.provider';
+import { MenuService } from './menu_order.service';
+import { MenuController } from './menu_order.controller';
 // import { MailService } from '../mail/mail.service';
 
 @Module({

@@ -14,23 +14,27 @@ import {
   Delete,
   Patch,
 } from '@nestjs/common';
-import { EachOrderService } from './EachOrder.service';
+import { MenuService } from './menu_order.service';
 import { ApiUseTags } from '@nestjs/swagger';
+
 import { diskStorage } from 'multer';
 import * as path from 'path';
 import * as _ from 'lodash';
 import { ObjectUnsubscribedError } from 'rxjs';
 
-@ApiUseTags('eachorder')
-@Controller('eachorder')
-export class EachOrderController {
-  constructor(private readonly orderService: EachOrderService) {}
+@ApiUseTags('menu')
+@Controller('menu')
+export class MenuOrderController {
+  constructor(private readonly menuService: MenuOrderService) {}
+
   @Get()
   async find(@Body() $body, @Req() $req, @Res() $res) {
     try {
-      let result = await this.orderService.find({
+      // let result = await this.lessonService.find({ relations: ['lesson'] });
+      let result = await this.menuService.find({
         where: { isDisable: false },
-        relations: ['order'],
+        relations: ['menu'],
+        // menu: { id: 'DESC' },
       });
 
       await $res.status(HttpStatus.OK).json(result);
@@ -38,20 +42,21 @@ export class EachOrderController {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
   }
+
   @Patch('update')
   async updateUser(@Body() $body, @Res() $res) {
     try {
       console.log('DATAAAAAA', $body);
-      let eachorder = await this.orderService.findOne({
+      let menu = await this.menuService.findOne({
         where: {
           id: $body['id'],
         },
       });
 
-      if (eachorder) {
-        eachorder.isChecked = $body['checked'];
-        eachorder = await this.orderService.saveOne(eachorder);
-        await $res.status(HttpStatus.OK).json(eachorder);
+      if (menu) {
+        menu.isChecked = $body['checked'];
+        menu = await this.menuService.saveOne(menu);
+        await $res.status(HttpStatus.OK).json(menu);
       } else {
         await $res.status(HttpStatus.OK).json({ message: 'Error' });
       }

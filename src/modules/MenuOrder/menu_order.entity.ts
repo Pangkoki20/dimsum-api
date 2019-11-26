@@ -10,9 +10,9 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 import { ApiModelProperty } from '@nestjs/swagger';
-
+import { Order } from '../Order/order.entity';
 @Entity()
-export class Menu {
+export class MenuOrder {
   @ApiModelProperty()
   @PrimaryGeneratedColumn()
   id: number;

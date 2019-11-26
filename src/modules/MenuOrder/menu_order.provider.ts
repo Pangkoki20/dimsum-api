@@ -1,9 +1,9 @@
 import { Connection, Repository } from 'typeorm';
-import { Menu } from './menu.entity';
+import { Menu } from './menu_order.entity';
 
-export const MenuProvider = [
+export const MenuOrderProvider = [
   {
-    provide: 'MenuToken',
+    provide: 'MenuOrderToken',
     useFactory: (con: Connection) => con.getRepository(Menu),
     inject: ['DbConnectionToken'],
   },
