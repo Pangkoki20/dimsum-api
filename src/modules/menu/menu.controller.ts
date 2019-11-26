@@ -51,16 +51,16 @@ export class MenuController {
     }
   }
 
-  @Get('allusers')
-  async findAllusers(@Req() $req, @Res() $res) {
+  @Get('allmenu')
+  async findAllmenu(@Req() $req, @Res() $res) {
     try {
-      let where = await`menu.isDisable = false && menu.role = 'menu' `;
+      let where = await `menu.isDisable = false && menu.role = 'menu' `;
       let relations = await [];
-      let order = await [];
+      let menu = await [];
       let menuData = await this.menuService.queryBuilder(
         where,
         // relations,
-        // order,
+        // ,
       );
 
       await $res.status(HttpStatus.OK).json(menuData);
@@ -70,7 +70,7 @@ export class MenuController {
   }
 
   @Post('create')
-  async createUser(@Body() $body, @Res() $res) {
+  async createMenu(@Body() $body, @Res() $res) {
     try {
       // if ($body.id) {
       //   $body.id = await parseInt($body.id.toString());

@@ -40,9 +40,9 @@ export class MenuService {
   async queryBuilder(
     $where = '',
     $relations = [],
-    $order = [],
+    $menu = [],
   ): Promise<Menu[]> {
-    let query = await this.menu.createQueryBuilder('order');
+    let query = await this.menu.createQueryBuilder('');
 
     if ($where) {
       query = query.where($where);
@@ -54,12 +54,12 @@ export class MenuService {
       });
     }
 
-    if ($order.length) {
-      $order.map(($objOrder, $index) => {
+    if ($menu.length) {
+      $menu.map(($objMenu, $index) => {
         if (!$index) {
-          query = query.orderBy($objOrder.field, $objOrder.direction);
+          query = query.orderBy($objMenu.field, $objMenu.direction);
         } else {
-          query = query.addOrderBy($objOrder.field, $objOrder.direction);
+          query = query.addOrderBy($objMenu.field, $objMenu.direction);
         }
       });
     }

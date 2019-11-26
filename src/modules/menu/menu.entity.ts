@@ -36,8 +36,4 @@ export class Menu {
   @ApiModelProperty()
   @UpdateDateColumn()
   price: number;
-
-  @ApiModelProperty()
-  @UpdateDateColumn()
-  order_id: number;
 }

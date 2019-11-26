@@ -3,18 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.modules';
 import { UsersModule } from './modules/user/users.modules';
-import { OrderModule } from './modules/order/order.modules';
+import { EachOrderModule } from './modules/EachOrder/eachorder.modules';
 import { MenuModule } from './modules/menu/menu.modules';
-import { ConfirmModule} from './modules/confirm/confirm.modules';
-
 @Module({
-  imports: [
-    DatabaseModule,
-    UsersModule,
-    OrderModule,
-    MenuModule,
-    ConfirmModule,
-  ],
+  imports: [DatabaseModule, UsersModule, EachOrderModule, MenuModule],
   controllers: [AppController],
   providers: [AppService],
 })
