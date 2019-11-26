@@ -10,7 +10,6 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 import { ApiModelProperty } from '@nestjs/swagger';
-import { Order } from '../Order/order.entity';
 @Entity()
 export class MenuOrder {
   @ApiModelProperty()
@@ -30,10 +29,14 @@ export class MenuOrder {
   update: Date;
 
   @ApiModelProperty()
-  @UpdateDateColumn()
+  @Column()
   namefood: string;
 
   @ApiModelProperty()
-  @UpdateDateColumn()
+  @Column()
+  order_id: string;
+
+  @ApiModelProperty()
+  @Column()
   price: number;
 }

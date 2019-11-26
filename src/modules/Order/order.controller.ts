@@ -14,13 +14,15 @@ import {
   Delete,
   Patch,
 } from '@nestjs/common';
-import { OrderService } from './order.service';
 import { ApiUseTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import * as path from 'path';
 import * as _ from 'lodash';
 import { ObjectUnsubscribedError } from 'rxjs';
+
+import { OrderService } from './order.service';
 import { MenuOrderService } from '../MenuOrder/menu_order.service';
+
 @ApiUseTags('order')
 @Controller('order')
 export class OrderController {
@@ -45,30 +47,31 @@ export class OrderController {
     }
   }
 
-  @Post()
+  @Post('create')
   async createOrder(@Body() $body, @Req() $req, @Res() $res) {
     try {
-      console.log('sent order ! ', $body);
-      if ($body.id) {
-        $body.id = await parseInt($body.id.toString());
-      }
+      console.log('Data Comming ! ', $body);
+      // if ($body.id) {
+      //   $body.id = await parseInt($body.id.toString());
+      // }
 
-      let menuOrder = await Object.assign({}, $body);
-      menuOrder = await this.menuOrderService.saveOne(menuOrder);
+      let order = await Object.assign({}, $body);
+      order = await this.orderService.saveOne(order);
 
-      let order: any = await $body.order.map(obj => {
-        obj.username = $body.username;
-        obj.menuOrder = menuOrder.id;
-        obj.price = $body.price;
-        this.orderService.save(obj);
+      let menu: any = await $body.order.map(obj => {
+        obj.order_id = order.id;
+        obj.price = obj.menu_price;
+        obj.namefood = obj.menu_name;
+        this.menuOrderService.save(obj);
       });
-      console.log('before save ................. ', order);
+      console.log('before save ................. ', menu);
 
       await $res.status(HttpStatus.OK).json(order);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'error' });
     }
   }
+
   @Get(':id')
   async findMenu(@Param('id') id, @Req() $req, @Res() $res) {
     try {
@@ -77,8 +80,28 @@ export class OrderController {
 
       let result = await this.orderService.find({
         where: {
-          menuOrder: `${id}`,
-          // isDisable: false,
+          id: `${id}`,
+          isDisable: false,
+        },
+        relations: [],
+      });
+
+      await $res.status(HttpStatus.OK).json(result);
+    } catch ($ex) {
+      await $res.status(HttpStatus.OK).json({ message: 'Error' });
+    }
+  }
+
+  @Get('orderbyuser/:id')
+  async findMenuByUser(@Param('id') id, @Req() $req, @Res() $res) {
+    try {
+      // let result = await this.lessonService.find({ relations: ['lesson'] });
+      console.log('MenuOrder id = ', id);
+
+      let result = await this.orderService.find({
+        where: {
+          user_id: `${id}`,
+          isDisable: false,
         },
         relations: [],
       });

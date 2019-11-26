@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.modules';
-import { MenuProvider } from './menu_order.provider';
-import { MenuService } from './menu_order.service';
-import { MenuController } from './menu_order.controller';
+import { MenuOrderProvider } from './menu_order.provider';
+import { MenuOrderService } from './menu_order.service';
+import { MenuOrderController } from './menu_order.controller';
 // import { MailService } from '../mail/mail.service';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [MenuController],
-  providers: [...MenuProvider, MenuService],
+  controllers: [MenuOrderController],
+  providers: [...MenuOrderProvider, MenuOrderService],
   // MailService
-  exports: [MenuService],
+  exports: [MenuOrderService],
 })
-export class MenuModule {}
+export class MenuOrderModule {}

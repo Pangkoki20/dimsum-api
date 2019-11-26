@@ -14,7 +14,7 @@ import {
   Delete,
   Patch,
 } from '@nestjs/common';
-import { MenuService } from './menu_order.service';
+import { MenuOrderService } from './menu_order.service';
 import { ApiUseTags } from '@nestjs/swagger';
 
 import { diskStorage } from 'multer';
@@ -43,23 +43,21 @@ export class MenuOrderController {
     }
   }
 
-  @Patch('update')
-  async updateUser(@Body() $body, @Res() $res) {
+  @Get(':id')
+  async findMenu(@Param('id') id, @Req() $req, @Res() $res) {
     try {
-      console.log('DATAAAAAA', $body);
-      let menu = await this.menuService.findOne({
+      // let result = await this.lessonService.find({ relations: ['lesson'] });
+      console.log('MenuOrder id = ', id);
+
+      let result = await this.menuService.find({
         where: {
-          id: $body['id'],
+          order_id: `${id}`,
+          isDisable: false,
         },
+        relations: [],
       });
 
-      if (menu) {
-        menu.isChecked = $body['checked'];
-        menu = await this.menuService.saveOne(menu);
-        await $res.status(HttpStatus.OK).json(menu);
-      } else {
-        await $res.status(HttpStatus.OK).json({ message: 'Error' });
-      }
+      await $res.status(HttpStatus.OK).json(result);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
