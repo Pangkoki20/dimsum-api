@@ -62,7 +62,6 @@ export class UsersController {
         // relations,
         // order,
       );
-
       await $res.status(HttpStatus.OK).json(userData);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
