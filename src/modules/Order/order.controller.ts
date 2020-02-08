@@ -92,6 +92,26 @@ export class OrderController {
     }
   }
 
+  @Get('orderbystatus/:id')
+  async findOrderByStatus(@Param('id') id, @Req() $req, @Res() $res) {
+    try {
+      // let result = await this.lessonService.find({ relations: ['lesson'] });
+      console.log('MenuOrder id = ', id);
+
+      let result = await this.orderService.find({
+        where: {
+          status: `${id}`,
+          isDisable: false,
+        },
+        relations: [],
+      });
+
+      await $res.status(HttpStatus.OK).json(result);
+    } catch ($ex) {
+      await $res.status(HttpStatus.OK).json({ message: 'Error' });
+    }
+  }
+
   @Get('orderbyuser/:id')
   async findMenuByUser(@Param('id') id, @Req() $req, @Res() $res) {
     try {
@@ -101,6 +121,7 @@ export class OrderController {
       let result = await this.orderService.find({
         where: {
           user_id: `${id}`,
+          
           isDisable: false,
         },
         relations: [],
