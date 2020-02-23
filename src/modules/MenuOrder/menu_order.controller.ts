@@ -33,7 +33,7 @@ export class MenuOrderController {
       // let result = await this.lessonService.find({ relations: ['lesson'] });
       let result = await this.menuService.find({
         where: { isDisable: false },
-        relations: ['menu'],
+        // relations: ['menu'],
         // menu: { id: 'DESC' },
       });
 

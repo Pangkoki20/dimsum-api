@@ -66,10 +66,10 @@ export class Order {
   payment: string;
 
   @ApiModelProperty()
-  @Column({default: null})
+  @Column({ default: null })
   code: string;
 
   @ApiModelProperty()
-  @Column({default: 1})
+  @Column({ default: 1 })
   status: string;
 }
