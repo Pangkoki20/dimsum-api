@@ -33,41 +33,41 @@ export class Order {
   @Column()
   user_id: number;
 
-  @ApiModelProperty()
-  @Column()
-  numhouse: number;
+  // @ApiModelProperty()
+  // @Column()
+  // numhouse: number;
 
-  @ApiModelProperty()
-  @Column()
-  nummoo: number;
+  // @ApiModelProperty()
+  // @Column()
+  // nummoo: number;
 
-  @ApiModelProperty()
-  @Column()
-  lane: string;
+  // @ApiModelProperty()
+  // @Column()
+  // lane: string;
 
-  @ApiModelProperty()
-  @Column()
-  tambon: string;
+  // @ApiModelProperty()
+  // @Column()
+  // tambon: string;
 
-  @ApiModelProperty()
-  @Column()
-  amphoe: string;
+  // @ApiModelProperty()
+  // @Column()
+  // amphoe: string;
 
-  @ApiModelProperty()
-  @Column()
-  changwat: string;
+  // @ApiModelProperty()
+  // @Column()
+  // changwat: string;
 
-  @ApiModelProperty()
-  @Column()
-  postcode: number;
+  // @ApiModelProperty()
+  // @Column()
+  // postcode: number;
 
-  @ApiModelProperty()
-  @Column()
-  payment: string;
+  // @ApiModelProperty()
+  // @Column()
+  // payment: string;
 
-  @ApiModelProperty()
-  @Column({ default: null })
-  code: string;
+  // @ApiModelProperty()
+  // @Column({ default: null })
+  // code: string;
 
   @ApiModelProperty()
   @Column({ default: 1 })
