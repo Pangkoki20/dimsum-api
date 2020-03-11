@@ -32,7 +32,7 @@ export class Users {
   @ApiModelProperty()
   @Column()
   password: string;
- 
+
   @ApiModelProperty()
   @Column()
   phone: string;
