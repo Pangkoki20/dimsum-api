@@ -7,7 +7,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.setGlobalPrefix('api')
+  await app.setGlobalPrefix('api');
   await app.use(BodyParser.json({ limit: '200mb' }));
   // await app.use('/upload', express.static(__dirname + '/../upload'));
   await app.use(BodyParser.urlencoded({ extended: true }));

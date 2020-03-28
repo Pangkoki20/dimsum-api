@@ -33,7 +33,7 @@ export class MenuOrderService {
       where: $params,
     });
     if (order) {
-       order.isDisable = await true;
+      order.isDisable = await true;
       return await this.menuOrder.save(order);
     }
   }
