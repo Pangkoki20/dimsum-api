@@ -39,4 +39,8 @@ export class Delivery {
   @ApiModelProperty()
   @Column({ default: 'user' })
   role: string;
+
+  @ApiModelProperty()
+  @Column({ default: 'user' })
+  status: string;
 }

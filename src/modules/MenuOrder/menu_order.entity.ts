@@ -38,5 +38,9 @@ export class MenuOrder {
 
   @ApiModelProperty()
   @Column()
+  user_id: number;
+
+  @ApiModelProperty()
+  @Column()
   price: number;
 }

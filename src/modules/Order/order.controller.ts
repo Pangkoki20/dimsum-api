@@ -62,6 +62,7 @@ export class OrderController {
         obj.order_id = order.id;
         obj.price = obj.menu_price;
         obj.namefood = obj.menu_name;
+        obj.user_id = obj.userid;
         this.menuOrderService.save(obj);
       });
       console.log('before save ................. ', menu);
@@ -121,7 +122,6 @@ export class OrderController {
       let result = await this.orderService.find({
         where: {
           user_id: `${id}`,
-          
           isDisable: false,
         },
         relations: [],
