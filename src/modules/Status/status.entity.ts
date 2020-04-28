@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { ApiModelProperty } from '@nestjs/swagger';
 @Entity()
-export class Delivery {
+export class Status {
   @ApiModelProperty()
   @PrimaryGeneratedColumn()
   id: number;
@@ -30,11 +30,7 @@ export class Delivery {
 
   @ApiModelProperty()
   @Column()
-  firstname: string;
-
-  @ApiModelProperty()
-  @Column()
-  lastname: string;
+  nameStatus: string;
 
   @ApiModelProperty()
   @Column({ default: 'user' })

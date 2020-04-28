@@ -7,7 +7,7 @@ import {
   Get,
   Param,
 } from '@nestjs/common';
-import { DeliveryService } from './delivery.service';
+import { StatusService } from './status.service';
 import { ApiUseTags } from '@nestjs/swagger';
 
 import { diskStorage } from 'multer';
@@ -15,19 +15,19 @@ import * as path from 'path';
 import * as _ from 'lodash';
 import { ObjectUnsubscribedError } from 'rxjs';
 
-@ApiUseTags('delivery')
-@Controller('delivery')
-export class DeliveryController {
-  constructor(private readonly deliveryService: DeliveryService) {}
+@ApiUseTags('status')
+@Controller('status')
+export class StatusController {
+  constructor(private readonly statusService: StatusService) {}
 
   @Get()
   async find(@Body() $body, @Req() $req, @Res() $res) {
     try {
       // let result = await this.lessonService.find({ relations: ['lesson'] });
-      let result = await this.deliveryService.find({
+      let result = await this.statusService.find({
         where: { isDisable: false },
         // relations: ['order'],
-        // delivery: { id: 'DESC' },
+        // status: { id: 'DESC' },
       });
 
       await $res.status(HttpStatus.OK).json(result);
@@ -37,12 +37,12 @@ export class DeliveryController {
   }
 
   @Get(':id')
-  async findDelivery(@Param('id') id, @Req() $req, @Res() $res) {
+  async findStatus(@Param('id') id, @Req() $req, @Res() $res) {
     try {
       // let result = await this.lessonService.find({ relations: ['lesson'] });
-      console.log('Delivery id = ', id);
+      console.log('Status id = ', id);
 
-      let result = await this.deliveryService.find({
+      let result = await this.statusService.find({
         where: {
           order_id: `${id}`,
           isDisable: false,

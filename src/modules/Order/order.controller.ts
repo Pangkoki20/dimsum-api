@@ -6,13 +6,7 @@ import {
   Body,
   Get,
   Post,
-  Put,
-  UseInterceptors,
-  FileInterceptor,
-  UploadedFile,
   Param,
-  Delete,
-  Patch,
 } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';

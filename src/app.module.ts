@@ -1,4 +1,4 @@
-import { DeliveryModule } from './modules/Delivery/delivery.modules';
+import { StatusModule } from './modules/Status/status.modules';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,7 +13,7 @@ import { MenuOrderModule } from './modules/MenuOrder/menu_order.modules';
     UsersModule,
     OrderModule,
     MenuOrderModule,
-    DeliveryModule,
+    StatusModule,
   ],
   controllers: [AppController],
   providers: [AppService],
