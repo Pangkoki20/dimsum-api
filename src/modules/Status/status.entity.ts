@@ -17,6 +17,10 @@ export class Status {
   id: number;
 
   @ApiModelProperty()
+  @Column()
+  status: string;
+
+  @ApiModelProperty()
   @Column({ default: false })
   isDisable: boolean;
 
@@ -27,16 +31,4 @@ export class Status {
   @ApiModelProperty()
   @UpdateDateColumn()
   update: Date;
-
-  @ApiModelProperty()
-  @Column()
-  nameStatus: string;
-
-  @ApiModelProperty()
-  @Column({ default: 'user' })
-  role: string;
-
-  @ApiModelProperty()
-  @Column({ default: 'user' })
-  status: string;
 }
