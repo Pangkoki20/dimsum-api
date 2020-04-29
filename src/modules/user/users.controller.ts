@@ -148,5 +148,4 @@ export class UsersController {
     const result = jwt.decode(token);
     return res.status(HttpStatus.OK).json(result);
   }
-
 }

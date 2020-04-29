@@ -4,10 +4,6 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  PrimaryColumn,
 } from 'typeorm';
 import { ApiModelProperty } from '@nestjs/swagger';
 @Entity()
