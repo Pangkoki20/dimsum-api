@@ -18,20 +18,12 @@ export class Order {
   id: number;
 
   @ApiModelProperty()
-  @Column({ default: false })
-  isDisable: boolean;
-
-  @ApiModelProperty()
-  @CreateDateColumn()
-  created: Date;
-
-  @ApiModelProperty()
-  @UpdateDateColumn()
-  update: Date;
+  @Column()
+  user_id: number;
 
   @ApiModelProperty()
   @Column()
-  user_id: number;
+  menu_id: number;
 
   @ApiModelProperty()
   @Column()
@@ -64,4 +56,16 @@ export class Order {
   @ApiModelProperty()
   @Column({ default: 1 })
   status: string;
+
+  @ApiModelProperty()
+  @Column({ default: false })
+  isDisable: boolean;
+
+  @ApiModelProperty()
+  @CreateDateColumn()
+  created: Date;
+
+  @ApiModelProperty()
+  @UpdateDateColumn()
+  update: Date;
 }
