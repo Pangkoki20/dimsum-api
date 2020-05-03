@@ -1,3 +1,4 @@
+import { Order } from './order.entity';
 import {
   Controller,
   Req,
@@ -13,7 +14,6 @@ import { diskStorage } from 'multer';
 import * as path from 'path';
 import * as _ from 'lodash';
 import { ObjectUnsubscribedError } from 'rxjs';
-
 import { OrderService } from './order.service';
 import { MenuOrderService } from '../MenuOrder/menu_order.service';
 
@@ -35,7 +35,22 @@ export class OrderController {
         // order: { id: 'DESC' },
       });
 
-      await $res.status(HttpStatus.OK).json(result);
+      let newData = await Promise.all(
+        result.map(async e => {
+          let eachMenu = await this.menuOrderService.find({
+            where: {
+              order_id: e.id,
+              isDisable: false,
+            },
+            relations: [],
+          });
+          return {
+            ...e,
+            allMenu: eachMenu,
+          };
+        }),
+      );
+      await $res.status(HttpStatus.OK).json(newData);
     } catch ($ex) {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
@@ -119,10 +134,32 @@ export class OrderController {
           isDisable: false,
         },
         relations: [],
+        order: { id: 'DESC' },
       });
 
-      await $res.status(HttpStatus.OK).json(result);
+      console.log('Result : ', result);
+      let newData = await Promise.all(
+        result.map(async e => {
+          let eachMenu = await this.menuOrderService.find({
+            where: {
+              order_id: e.id,
+              isDisable: false,
+            },
+            relations: [],
+          });
+          return {
+            ...e,
+            allMenu: eachMenu,
+          };
+        }),
+      );
+      console.log('NewData : ', newData);
+      let res = {
+        allMenu: newData,
+      };
+      await $res.status(HttpStatus.OK).json(newData);
     } catch ($ex) {
+      console.log('error : ', $ex);
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
   }
