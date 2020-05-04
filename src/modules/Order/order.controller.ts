@@ -8,6 +8,7 @@ import {
   Get,
   Post,
   Param,
+  Put,
 } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
@@ -121,7 +122,15 @@ export class OrderController {
       await $res.status(HttpStatus.OK).json({ message: 'Error' });
     }
   }
-
+  @Put('updatebystatus/:id')
+  async updateStatus(@Param('id') id, @Body('status') status, @Res() $res) {
+    const result = await this.orderService.updateByStatus(id, status);
+    if (result) {
+      await $res.status(HttpStatus.OK).json(result);
+    } else {
+      await $res.status(HttpStatus.OK).json({ message: 'Error' });
+    }
+  }
   @Get('orderbyuser/:id')
   async findMenuByUser(@Param('id') id, @Req() $req, @Res() $res) {
     try {

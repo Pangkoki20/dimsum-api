@@ -37,6 +37,19 @@ export class OrderService {
       return await this.order.save(order);
     }
   }
+  async updateByStatus(id: number, status: string): Promise<any> {
+    let order = await this.order.findOne({
+      where: {
+        id,
+      },
+    });
+    if (+order.status < +status && +status < 5) {
+      order = await this.order.save({ ...order, status });
+      return order;
+    } else {
+      return false;
+    }
+  }
 
   async queryBuilder(
     $where = '',

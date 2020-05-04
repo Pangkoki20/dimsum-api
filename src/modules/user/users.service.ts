@@ -70,8 +70,9 @@ export class UsersService {
   }
 
   async genKey(len = 80) {
-    let name =  '';
-    const possible =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let name = '';
+    const possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (let i = 0; i < len; i++) {
       name += await possible.charAt(

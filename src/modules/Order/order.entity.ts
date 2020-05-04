@@ -23,10 +23,6 @@ export class Order {
 
   @ApiModelProperty()
   @Column()
-  menu_id: number;
-
-  @ApiModelProperty()
-  @Column()
   numhouse: number;
 
   @ApiModelProperty()
@@ -52,6 +48,10 @@ export class Order {
   @ApiModelProperty()
   @Column()
   payment: string;
+
+  @ApiModelProperty()
+  @Column()
+  priceAll: number;
 
   @ApiModelProperty()
   @Column({ default: 1 })
