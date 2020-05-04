@@ -17,6 +17,22 @@ export class MenuOrder {
   id: number;
 
   @ApiModelProperty()
+  @Column()
+  order_id: string;
+
+  @ApiModelProperty()
+  @Column()
+  user_id: number;
+
+  @ApiModelProperty()
+  @Column()
+  namefood: string;
+
+  @ApiModelProperty()
+  @Column()
+  price: number;
+
+  @ApiModelProperty()
   @Column({ default: false })
   isDisable: boolean;
 
@@ -27,20 +43,4 @@ export class MenuOrder {
   @ApiModelProperty()
   @UpdateDateColumn()
   update: Date;
-
-  @ApiModelProperty()
-  @Column()
-  namefood: string;
-
-  @ApiModelProperty()
-  @Column()
-  order_id: string;
-
-  @ApiModelProperty()
-  @Column()
-  user_id: number;
-
-  @ApiModelProperty()
-  @Column()
-  price: number;
 }
