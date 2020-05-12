@@ -27,6 +27,9 @@ export class MenuOrder {
   @ApiModelProperty()
   @Column()
   namefood: string;
+  @ApiModelProperty()
+  @Column()
+  value: string;
 
   @ApiModelProperty()
   @Column()
