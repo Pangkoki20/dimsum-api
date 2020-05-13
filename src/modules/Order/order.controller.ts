@@ -72,7 +72,9 @@ export class OrderController {
         obj.order_id = order.id;
         obj.price = obj.menu_price;
         obj.namefood = obj.menu_name;
+        obj.value = obj.menu_value;
         obj.user_id = obj.userid;
+        obj.isDisable = 0;
         this.menuOrderService.save(obj);
       });
       console.log('before save ................. ', menu);
